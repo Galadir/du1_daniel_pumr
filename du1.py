@@ -14,7 +14,14 @@ for i in range(-90,91,10):
     elif zobrazeni == 'B':
         epsilon =2*r*math.tan(uhel/2)
     elif zobrazeni == 'M':
-        epsilon = r*math.log(math.cos(uhel/2)/math.sin(uhel/2))
+        if abs(i) == 90:
+            epsilon = 101
+        elif i < 0:
+            uhelM = (90 / 180 * math.pi) - abs(uhel)
+            epsilon = -(r * math.log(math.cos(uhelM / 2) / math.sin(uhelM / 2)))
+        else:
+            uhelM = (90/180*math.pi)-abs(uhel)
+            epsilon = r*math.log(math.cos(uhelM/2)/math.sin(uhelM/2))
     else:
         zobrazeni = input('Zobrazení nebylo zadáno správně.\n'
                           'Pro spravný průběh je potřeba vybrat z možnosti M, L, B, A.\n'
