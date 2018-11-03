@@ -88,15 +88,35 @@ except ValueError:
     print('Měřítko nebo poloměr Země byl zadán chybně a program byl ukončen. Pravděpodobně se nejednalo o číslo')
     exit(0)
 
+
 print('\nPro výpočet přepočtených souřadnic bodů v daném zobrazení, zadávejte nyní ve stupních původní souřadnice.\n'
       'Pokud si přejete program ukončit, zadejte souřadnice 0,0')
-x1 = float(input('Jaká je ZEMĚPISNÁ DÉLKA bodu? '))
-y1 = float(input('Jaká je ZEMĚPISNÁ ŠÍŘKA bodu? '))
 
-while not(x1==0 and y1==0):
-    X = vypocet_poledniku(x1)
-    Y = vypocet_rovnobezky(y1)
-    souradnice = ("X = {:.1f}, Y = {:.1f}".format(X, Y))
-    print(souradnice)
+try:
     x1 = float(input('Jaká je ZEMĚPISNÁ DÉLKA bodu? '))
+    while not (x1>=-180 and x1<=180):
+        print('Zeměpisná délka byla zadána chybně, zkuste to znovu.')
+        x1 = float(input('Jaká je ZEMĚPISNÁ DÉLKA bodu? '))
+
     y1 = float(input('Jaká je ZEMĚPISNÁ ŠÍŘKA bodu? '))
+    while not (y1>=-90 and y1<=90):
+        print('Zeměpisná šířka byla zadána chybně, zkuste to znovu.')
+        y1 = float(input('Jaká je ZEMĚPISNÁ ŠÍŘKA bodu? '))
+
+    while not(x1==0 and y1==0):
+        X = vypocet_poledniku(x1)
+        Y = vypocet_rovnobezky(y1)
+        souradnice = ("X = {:.1f}, Y = {:.1f}".format(X, Y))
+        print(souradnice)
+        x1 = float(input('Jaká je ZEMĚPISNÁ DÉLKA bodu? '))
+        while not (x1 >= -180 and x1 <= 180):
+            print('Zeměpisná délka byla zadána chybně, zkuste to znovu.')
+            x1 = float(input('Jaká je ZEMĚPISNÁ DÉLKA bodu? '))
+
+        y1 = float(input('Jaká je ZEMĚPISNÁ ŠÍŘKA bodu? '))
+        while not (y1 >= -90 and y1 <= 90):
+            print('Zeměpisná šířka byla zadána chybně, zkuste to znovu.')
+            y1 = float(input('Jaká je ZEMĚPISNÁ ŠÍŘKA bodu? '))
+except ValueError:
+    print('Zeměpisná šířka či délka byla zadána zcela chybně a program byl ukončen. Pravděpodobně se nejednalo o číslo')
+    exit(0)
