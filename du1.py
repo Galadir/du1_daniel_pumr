@@ -1,6 +1,8 @@
 import math
 
 #Výběr zobrazení uživatelem
+from typing import Any, Union
+
 zobrazeni = input('V jakém zobrazení chcete mapu tvořit? ')
 
 #podmínka, která řeší špatně zadané zobrazení
@@ -120,3 +122,34 @@ try:
 except ValueError:
     print('Zeměpisná šířka či délka byla zadána zcela chybně a program byl ukončen. Pravděpodobně se nejednalo o číslo')
     exit(0)
+
+from turtle import forward, left, right, shape, penup, pendown, exitonclick
+
+shape('turtle')
+exitonclick()
+
+for i in range(-90, 91, 10):
+    posunY = 10*(vypocet_rovnobezky(abs(i))-vypocet_rovnobezky(abs(i)-10))
+    maxZD = vypocet_poledniku(180)
+    forward(maxZD)
+    penup()
+    left(180)
+    forward(maxZD)
+    right(90)
+    forward(posunY)
+    right(90)
+    pendown()
+
+
+for i in range(-180, 181, 10):
+    posunX = 10*(vypocet_poledniku(abs(i))-vypocet_poledniku(abs(i)-10))
+    maxZS = vypocet_rovnobezky(90)
+    right(180)
+    forward(maxZS)
+    penup()
+    left(180)
+    forward(maxZS)
+    right(90)
+    forward(posunX)
+    right(90)
+    pendown()
